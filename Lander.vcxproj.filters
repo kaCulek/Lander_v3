@@ -30,12 +30,18 @@
     <ClInclude Include="Lander.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LanderGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Lander.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LanderGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
