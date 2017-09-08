@@ -11,7 +11,6 @@ LanderTexture::LanderTexture(SDL_Renderer* r, SDL_Window *window)
 	dstrect = { 310, 0, 20, 20 };
 	SDL_RenderCopy(renderer, texture, NULL, &dstrect);
 	SDL_RenderPresent(renderer);
-
 	windowW = 0;
 	windowH = 0;
 	SDL_GetWindowSize(window, &windowW, &windowH);

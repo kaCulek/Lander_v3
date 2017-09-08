@@ -45,12 +45,9 @@ void LanderGame::Start()
 	//Main loop flag
 	//Event handler
 	bool quit = false;
-
 	SDL_Event e;
 	bool moveLanderDown = false;
 	int frameTick = 0;
-	bool hasLanded = false;
-	bool hasLandedSuccessfully = false;
 
 	while (!quit)
 	{
@@ -79,11 +76,6 @@ void LanderGame::Start()
 		}
 
 		SDL_RenderClear(renderer);
-		
-		/*if ((dstrect.y + dstrect.h) >= windowH)
-		{
-			quit = true;
-		}*/
 
 		moveLanderDown = frameTick >= 1000;
 		if (moveLanderDown)
@@ -116,15 +108,12 @@ void LanderGame::Start()
 			quit = true;
 		}
 	}
-	
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
-	SDL_Quit();
 }
 
 
 LanderGame::~LanderGame()
 {
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
 }
-
-

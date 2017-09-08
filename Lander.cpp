@@ -60,7 +60,6 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 //
 //  FUNCTION: MyRegisterClass()
-//
 //  PURPOSE: Registers the window class.
 //
 ATOM MyRegisterClass(HINSTANCE hInstance)

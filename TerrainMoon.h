@@ -7,7 +7,6 @@ class TerrainMoon
 	SDL_Renderer* renderer;
 
 public:
-
 	TerrainMoon(SDL_Renderer* r);
 	int IsIntersected(SDL_Rect rect);
 	void Render();
