@@ -1,10 +1,10 @@
 #include "SDL.h"
-#include <vector>
 
 #pragma once
 class LanderGame
 {
-
+	SDL_Window *window;
+	SDL_Renderer* renderer;
 public:
 	LanderGame();
 	void Start();
