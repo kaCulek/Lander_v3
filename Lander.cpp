@@ -5,12 +5,6 @@
 #include "Lander.h"
 #include "LanderGame.h"
 
-
-//GameParameters-----------------------------------------------------------
-
-
-
-
 //GameParameters-----------------------------------------------------------
 
 #define MAX_LOADSTRING 100
@@ -63,8 +57,6 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
 
 	return (int) msg.wParam;
 }
-
-
 
 //
 //  FUNCTION: MyRegisterClass()
