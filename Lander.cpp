@@ -104,7 +104,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case IDM_NEWGAME:
 		{
 			LanderGame game = LanderGame();
+			EnableWindow(hWnd, FALSE);		//background window made modal
 			game.Start();
+			EnableWindow(hWnd, TRUE);		//background window reenabled
 		}
 		break;
 		case IDM_EXIT:
