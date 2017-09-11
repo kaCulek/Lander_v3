@@ -11,7 +11,7 @@ LanderGame::LanderGame()
 		SDL_WINDOWPOS_UNDEFINED,           // initial y position
 		640,                               // width, in pixels
 		480,                               // height, in pixels
-		SDL_WINDOW_INPUT_GRABBED		// flags - see below, FORCED to play the game
+		SDL_WINDOW_OPENGL				// flags - see below, SDL_WINDOW_INPUT_GRABBED DOESN'T WORK (KEYBOARD OVERRIDE D:)
 	);
 	// Check that the window was successfully created
 	if (window != NULL) {
@@ -48,6 +48,10 @@ void LanderGame::Start()
 		//Handle events on queue
 		while (SDL_PollEvent(&e) != 0)
 		{
+			if (e.type == SDL_WINDOWEVENT_MINIMIZED)
+			{
+				SDL_MinimizeWindow(window);
+			}
 			//User requests quit
 			if (e.type == SDL_QUIT)
 			{
