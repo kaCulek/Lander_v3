@@ -63,9 +63,8 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 }
 //   FUNCTION: InitInstance(HINSTANCE, int)
 //   PURPOSE: Saves instance handle and creates main window
-//   COMMENTS:
-//        In this function, we save the instance handle in a global variable and
-//        create and display the main program window.
+//   COMMENTS: In this function, we save the instance handle in a global variable and
+//		       create and display the main program window.
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    HWND hWnd;
@@ -105,7 +104,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case IDM_NEWGAME:
 		{
 			LanderGame game = LanderGame();
+			EnableWindow(hWnd, FALSE); //background window is now made modal to prevent unintended action
 			game.Start();
+			EnableWindow(hWnd, TRUE); //background window is reenabled after game has finished
 		}
 		break;
 		case IDM_EXIT:
