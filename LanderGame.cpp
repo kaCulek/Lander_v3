@@ -11,7 +11,7 @@ LanderGame::LanderGame()
 		SDL_WINDOWPOS_UNDEFINED,           // initial y position
 		640,                               // width, in pixels
 		480,                               // height, in pixels
-		SDL_WINDOW_OPENGL                  // flags - see below
+		SDL_WINDOW_INPUT_GRABBED		// flags - see below, FORCED to play the game
 	);
 	// Check that the window was successfully created
 	if (window != NULL) {
@@ -26,7 +26,7 @@ void LanderGame::Start()
 		// if the window was NOT successfully created
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
 			"Error",
-			"No window found",
+			"No window found.",
 			NULL);
 		return;
 	}
@@ -36,8 +36,8 @@ void LanderGame::Start()
 	TerrainMoon terrain = TerrainMoon(renderer);
 	//run game
 	//Main loop flag
-	//Event handler
 	bool quit = false;
+	//Event handler
 	SDL_Event e;
 	bool moveLanderDown = false;
 	int frameTick = 0;
@@ -51,6 +51,10 @@ void LanderGame::Start()
 			//User requests quit
 			if (e.type == SDL_QUIT)
 			{
+				SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
+					"Game Over",
+					"User abort!",
+					NULL);
 				quit = true;
 			}
 			//Key bindings for moving the lander
