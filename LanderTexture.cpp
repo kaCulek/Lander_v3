@@ -1,7 +1,6 @@
+// LanderTexture.cpp : Creating and moving the lander itself
 #include "stdafx.h"
-#include "LanderTexture.h"
-#include "SDL.h"
-
+// Class constructor
 LanderTexture::LanderTexture(SDL_Renderer* r, SDL_Window *window)
 {
 	renderer = r;
@@ -15,12 +14,11 @@ LanderTexture::LanderTexture(SDL_Renderer* r, SDL_Window *window)
 	windowH = 0;
 	SDL_GetWindowSize(window, &windowW, &windowH);
 }
-
+//Definitions of functions that move the lander around
 void LanderTexture::Move(bool moveLeft, bool moveRight, bool moveUp)
 {
 	int moveDownBy = 0;
 	int newY = 0;
-
 	if (moveLeft)
 	{
 		if (dstrect.x > 0)
@@ -28,7 +26,6 @@ void LanderTexture::Move(bool moveLeft, bool moveRight, bool moveUp)
 			dstrect.x = dstrect.x - 10;
 		}
 	}
-
 	if (moveRight)
 	{
 		if ((dstrect.x + dstrect.w) < windowW)
@@ -36,7 +33,6 @@ void LanderTexture::Move(bool moveLeft, bool moveRight, bool moveUp)
 			dstrect.x = dstrect.x + 10;
 		}
 	}
-
 	int gravityFactor = dstrect.y / 20;
 	if (gravityFactor >= 20)
 	{
@@ -46,13 +42,11 @@ void LanderTexture::Move(bool moveLeft, bool moveRight, bool moveUp)
 	{
 		gravityFactor = 5;
 	}
-	moveDownBy = gravityFactor;
-	
+	moveDownBy = gravityFactor;	
 	if (moveUp)
 	{
 		moveDownBy = -5;
 	}
-	
 	if (moveDownBy != 0)
 	{
 		newY = dstrect.y + moveDownBy;
@@ -60,11 +54,11 @@ void LanderTexture::Move(bool moveLeft, bool moveRight, bool moveUp)
 		{
 			dstrect.y = newY;
 		}
-
 		moveDownBy = 0;
 	}
 }
-
+//  FUNCTIONS: MoveLeft/Right/Up/Down()
+//  PURPOSE: Moves the lander in said directions via arrow keys
 void LanderTexture::MoveLeft()
 {
 	Move(true, false, false);
@@ -84,12 +78,13 @@ void LanderTexture::MoveDown()
 {
 	Move(false, false, false);
 }
-
+//  FUNCTIONS: RenderCopy()
+//  PURPOSE: Refreshes the lander
 void LanderTexture::RenderCopy()
 {
 	SDL_RenderCopy(renderer, texture, NULL, &dstrect);
 }
-
+//Class destructor
 LanderTexture::~LanderTexture()
 {
 	SDL_DestroyTexture(texture);

@@ -1,13 +1,14 @@
+// TerrainMoon.cpp : Creating and working with the moon surface
 #include "stdafx.h"
 #include "TerrainMoon.h"
 #include "SDL.h"
-#include <vector>
-
+//Class constructor
 TerrainMoon::TerrainMoon(SDL_Renderer* r)
 {
 	renderer = r;
 }
-
+//  FUNCTION: Render()
+//  PURPOSE: Defines and draws the moon surface
 void TerrainMoon::Render()
 {
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
@@ -31,8 +32,8 @@ void TerrainMoon::Render()
 	SDL_RenderDrawLines(renderer, points, 15);
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 }
-
-
+//  FUNCTION: IsIntersected(SDL_Rect rect)
+//  PURPOSE: Checks if the lander has landed on the surface for every segment
 int TerrainMoon::IsIntersected(SDL_Rect rect)
 {
 	int result = -1;
@@ -57,16 +58,17 @@ int TerrainMoon::IsIntersected(SDL_Rect rect)
 	{
 		SDL_Point x1 = points[i];
 		SDL_Point x2 = points[i + 1];
+		//checks for successful/unsuccessful landing
 		if (SDL_IntersectRectAndLine(&rect, &x1.x, &x1.y, &x2.x, &x2.y))
 		{
 			if (x1.y == x2.y)
 			{
-				//has landed successfuly
+				//has landed successfully
 				result = 2;
 			}
 			else
 			{
-				//landed but not successfuly
+				//landed but not successfully
 				result = 1;
 			}
 			break;
@@ -74,7 +76,7 @@ int TerrainMoon::IsIntersected(SDL_Rect rect)
 	}
 	return result;
 }
-
+//Class destructor
 TerrainMoon::~TerrainMoon()
 {
 }
