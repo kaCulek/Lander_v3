@@ -37,6 +37,7 @@ void LanderGame::Start()
 	//run game
 	//Main loop flag
 	bool quit = false;
+	bool isMinimized = false;
 	//Event handler
 	SDL_Event e;
 	bool moveLanderDown = false;
@@ -48,17 +49,26 @@ void LanderGame::Start()
 		//Handle events on queue
 		while (SDL_PollEvent(&e) != 0)
 		{
-			if (e.type == SDL_WINDOWEVENT_MINIMIZED)
+			if (e.type == SDL_WINDOWEVENT)
 			{
-				SDL_MinimizeWindow(window);
-			}
+				if (e.window.event == SDL_WINDOWEVENT_MINIMIZED)
+				{
+					isMinimized = true;
+					SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
+						"Game Paused",
+						"Press OK to continue.",
+						NULL);
+					SDL_RestoreWindow(window);
+					SDL_Delay(3000);
+				}
+				if (e.window.event == SDL_WINDOWEVENT_RESTORED)
+				{
+					isMinimized = false;
+				}
+			} 
 			//User requests quit
 			if (e.type == SDL_QUIT)
 			{
-				SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
-					"Game Over",
-					"User abort!",
-					NULL);
 				quit = true;
 			}
 			//Key bindings for moving the lander
@@ -77,7 +87,7 @@ void LanderGame::Start()
 		}
 		SDL_RenderClear(renderer);
 		//Lander moving on its own (gravity)
-		moveLanderDown = frameTick >= 1000;
+		moveLanderDown = (frameTick >= 1000);
 		if (moveLanderDown)
 		{
 			lander.MoveDown();
